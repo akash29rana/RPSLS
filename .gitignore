@@ -1,0 +1,15 @@
+# Unity-specific folders
+Library/
+Temp/
+Build/
+Builds/
+
+# OS-specific files
+.DS_Store
+
+# User-specific files
+.idea/
+.vscode/
+
+# Log files
+*.log
