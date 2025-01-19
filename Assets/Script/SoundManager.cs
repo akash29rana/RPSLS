@@ -32,7 +32,16 @@ public class SoundManager : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip popup;
 
-    private bool isMuted = false; 
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioClip timerStart;
+    public AudioClip timerEnding;
+
+    bool isMuted = false; 
+
+    bool isSoundEffectPlaying = false;
+    AudioClip currentSoundEffect;
+    float soundEffectTime = 0f;
 
     private void Start()
     {
@@ -102,7 +111,38 @@ public class SoundManager : MonoBehaviour
     {
         if (soundEffects != null && clip != null)
         {
-            soundEffects.PlayOneShot(clip);
+            if (isSoundEffectPlaying)
+            {
+                soundEffects.Stop();
+                soundEffectTime = 0f; 
+                isSoundEffectPlaying = false;
+            }
+
+            soundEffects.clip = clip;
+            soundEffects.Play();
+            currentSoundEffect = clip;
+            isSoundEffectPlaying = true;
+        }
+    }
+
+    public void PauseSoundEffect()
+    {
+        if (isSoundEffectPlaying)
+        {
+            soundEffectTime = soundEffects.time;  // Store the time of the current sound effect
+            soundEffects.Stop();
+            isSoundEffectPlaying = false;
+        }
+    }
+
+    public void ResumeSoundEffect()
+    {
+        if (!isSoundEffectPlaying && currentSoundEffect != null)
+        {
+            soundEffects.clip = currentSoundEffect;  // Set the previously played clip
+            soundEffects.time = soundEffectTime;     // Resume from the stored time
+            soundEffects.Play();                     // Play the sound effect
+            isSoundEffectPlaying = true;
         }
     }
 

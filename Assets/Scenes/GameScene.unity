@@ -3160,6 +3160,10 @@ MonoBehaviour:
   soundEffects: {fileID: 707912243}
   buttonClick: {fileID: 8300000, guid: dc8049b5a65e547939bc961227591878, type: 3}
   popup: {fileID: 8300000, guid: 162d125eb36ea40dba250d5f87df73ae, type: 3}
+  winSound: {fileID: 8300000, guid: 75047d19afa3b453dbff05ca36cac25c, type: 3}
+  loseSound: {fileID: 8300000, guid: 2e00bf8c9706f4e1ebf6eed13462b35d, type: 3}
+  timerStart: {fileID: 8300000, guid: b094503f38a7e4273840428e7b6f4e6c, type: 3}
+  timerEnding: {fileID: 8300000, guid: 5cf4b9e787d8c49a8be6041e64395a22, type: 3}
 --- !u!4 &688923846
 Transform:
   m_ObjectHideFlags: 0

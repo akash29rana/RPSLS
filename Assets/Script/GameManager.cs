@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
        if(gameStateManagerInstance.getCurrentGameState() == GameStates.MainMenu)
        {
             highScore.showScore(false);
+            SoundManager.Instance.StopBackgroundMusic();
             SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.buttonClick);
             startGameAnimator.Play("ShowGameAnimation");
             
@@ -274,6 +275,7 @@ public class GameManager : MonoBehaviour
         winText.text = "";
         if(playerChoice == GameChoice.None)
         {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.loseSound);
             openGameOverPopup();
             highScore.resetCurrentScore();
             winText.text =  "You Lose!";   
@@ -283,6 +285,7 @@ public class GameManager : MonoBehaviour
 
         if (playerChoice == opponentChoice)
         {
+            SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.loseSound);
             winText.text = "It's a tie!";           
         }
         else
@@ -295,11 +298,13 @@ public class GameManager : MonoBehaviour
                 (playerChoice == GameChoice.Spock && (opponentChoice == GameChoice.Scissors || opponentChoice == GameChoice.Rock))
             )
             {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.winSound);
                 highScore.increaseCurrentScore();
                 winText.text = "You Wins!";
             }
             else
             {
+                SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.loseSound);
                 openGameOverPopup();
                 highScore.resetCurrentScore();
                 winText.text =  "You Lose!";

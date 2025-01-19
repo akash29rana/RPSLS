@@ -27,15 +27,24 @@ public class Timer : MonoBehaviour
 
     public void startTimer()
     {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.timerStart);
         progressBar.value = 1;
         startTime = Time.time;
         timerRunning = true;
         timerPaused = false;
+        Invoke("startTimerEnfind",0.5f);
     }
+
+    void startTimerEnfind()
+    {
+        SoundManager.Instance.PlaySoundEffect(SoundManager.Instance.timerEnding);
+    }
+
     public void PauseTimer()
     {
        if (timerRunning && !timerPaused)
         {
+            SoundManager.Instance.PauseSoundEffect();
             timerPaused = true;
             pausedTime = Time.time - startTime; 
         }
@@ -44,6 +53,7 @@ public class Timer : MonoBehaviour
     {
         if (timerRunning && timerPaused)
         {
+            SoundManager.Instance.ResumeSoundEffect();
             timerPaused = false;
             startTime = Time.time - pausedTime; 
         }
